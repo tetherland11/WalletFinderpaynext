@@ -1,0 +1,97 @@
+let totalSearchTime = 0;
+let searchInterval;
+let walletFound = false;
+
+document.getElementById("startSearch").addEventListener("click", startSearch);
+document.getElementById("requestAccess").addEventListener("click", requestAccess);
+document.getElementById("donateWallet").addEventListener("click", donateWallet);
+document.getElementById("copyPayment").addEventListener("click", copyPaymentLink);
+document.getElementById("sendReceipt").addEventListener("click", sendReceipt);
+
+function startSearch() {
+  if (walletFound) return;
+
+  document.getElementById("startSearch").disabled = true;
+  document.getElementById("requestAccess").disabled = true;
+  document.getElementById("donateWallet").disabled = true;
+
+  searchInterval = setInterval(() => {
+    totalSearchTime += 1;
+    document.getElementById("timer").innerText = `Total Search Time: ${totalSearchTime} minutes`;
+
+    if (totalSearchTime >= 480) {
+      clearInterval(searchInterval);
+      walletFound = true;
+      document.getElementById("result").innerText = "Wallet Found with 23457 Tether!";
+      document.getElementById("requestAccess").disabled = false;
+      document.getElementById("donateWallet").disabled = false;
+    }
+
+    updateMatrix();
+  }, 1000);
+}
+
+function updateMatrix() {
+  const matrix = document.getElementById("matrix");
+  matrix.innerHTML = "";
+  for (let i = 0; i < 25; i++) {
+    const cell = document.createElement("div");
+    cell.innerText = Math.floor(Math.random() * 100);
+    matrix.appendChild(cell);
+  }
+}
+
+function requestAccess() {
+  const walletBalance = 23457;
+  const requiredAmount = 600;
+
+  if (walletBalance >= requiredAmount) {
+    const words = generateRandomWords(12);
+    document.getElementById("result").innerText = `Access Granted! Your 12 words: ${words.join(" ")}`;
+  } else {
+    document.getElementById("result").innerText = "Insufficient balance. Please add more Tether.";
+  }
+}
+
+function donateWallet() {
+  totalSearchTime = 0;
+  walletFound = false;
+  document.getElementById("startSearch").disabled = false;
+  document.getElementById("requestAccess").disabled = true;
+  document.getElementById("donateWallet").disabled = true;
+  document.getElementById("result").innerText = "Wallet donated. Restarting search...";
+  setTimeout(startSearch, 20000); // 20 hours delay simulated by 20 seconds
+}
+
+function copyPaymentLink() {
+  navigator.clipboard.writeText("TXn3Nnp71nZY214MpM9X9RLd1m1roXgi7r");
+  alert("Payment link copied to clipboard!");
+}
+
+function sendReceipt() {
+  const recipientEmail = "info@Tetherland.com";
+  const emailDisplay = document.getElementById("emailDisplay");
+
+  // Display the email address
+  emailDisplay.innerText = `Email will be sent to: ${recipientEmail}`;
+  emailDisplay.style.display = "block";
+
+  // Open the email client
+  const subject = "Payment Receipt";
+  const body = "Please find the payment receipt attached.";
+  const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailtoLink;
+}
+
+function generateRandomWords(count) {
+  const words = [];
+  const possible = "abcdefghijklmnopqrstuvwxyz";
+  for (let i = 0; i < count; i++) {
+    let word = "";
+    for (let j = 0; j < 6; j++) {
+      word += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    words.push(word);
+  }
+  return words;
+}

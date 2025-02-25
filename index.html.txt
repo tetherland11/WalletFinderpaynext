@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet Finder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Wallet Finder</h1>
+    <div id="timer">Total Search Time: 0 minutes</div>
+    <button id="startSearch">Start Wallet Search</button>
+    <div id="matrix"></div>
+    <div id="result"></div>
+    <button id="requestAccess" disabled>checked phrases access</button>
+    <button id="donateWallet" disabled>Donate Wallet</button>
+    <div id="paymentDetails">
+      <p>Payment Address: TXn3Nnp71nZY214MpM9X9RLd1m1roXgi7r</p>
+      <button id="copyPayment">Copy Payment Link</button>
+      <button id="sendReceipt">Send Receipt via Info@TetherLand.com</button>
+      <div id="emailDisplay"></div> <!-- New div to display email address -->
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

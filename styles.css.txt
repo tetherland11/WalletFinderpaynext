@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#matrix {
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  gap: 10px;
+  margin: 20px auto;
+}
+
+#matrix div {
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+#paymentDetails {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+#emailDisplay {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #e9ffe9;
+  border: 2px solid #000;
+  border-radius: 5px;
+  color: green;
+  font-weight: bold;
+  display: none; /* Hidden by default */
+}
